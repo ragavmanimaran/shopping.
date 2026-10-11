@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ShopSphere AI – Shop Smarter. Save More. Discover the best deals on Electronics, Fashion, Accessories, Home & Living, and Sports." />
+  <title>ShopSphere AI – Shop Smarter. Save More.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       TOAST NOTIFICATION CONTAINER
+  ============================================================ -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+  ============================================================ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#home" class="logo" id="logo-link" aria-label="ShopSphere AI Home">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="14" fill="url(#logoGrad)"/>
+            <path d="M8 10h12M10 14h8M12 18h4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28">
+                <stop offset="0%" stop-color="#7c3aed"/>
+                <stop offset="100%" stop-color="#4f46e5"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">ShopSphere <span class="logo-ai">AI</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+        <a href="#home" class="nav-link active" id="nav-home">Home</a>
+        <a href="#products" class="nav-link" id="nav-products">All Products</a>
+        <a href="#categories" class="nav-link" id="nav-categories">Categories</a>
+        <a href="#deals" class="nav-link" id="nav-deals">Today's Deals</a>
+      </nav>
+
+      <!-- Search Bar -->
+      <div class="nav-search" id="nav-search-wrapper">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="search" id="nav-search-input" class="search-input" placeholder="Search products…" aria-label="Search products" autocomplete="off" />
+        <div class="search-suggestions" id="search-suggestions"></div>
+      </div>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- Dark Mode Toggle -->
+        <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <!-- Wishlist -->
+        <button class="icon-btn wishlist-btn" id="wishlist-nav-btn" aria-label="View wishlist" title="Wishlist">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span class="badge" id="wishlist-count">0</span>
+        </button>
+
+        <!-- Cart -->
+        <button class="icon-btn cart-btn" id="cart-nav-btn" aria-label="View shopping cart" title="Shopping cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="badge" id="cart-count">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="icon-btn hamburger" id="hamburger" aria-label="Toggle mobile menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#home" class="mobile-link" id="mob-home">Home</a>
+      <a href="#products" class="mobile-link" id="mob-products">All Products</a>
+      <a href="#categories" class="mobile-link" id="mob-categories">Categories</a>
+      <a href="#deals" class="mobile-link" id="mob-deals">Today's Deals</a>
+      <div class="mobile-search">
+        <input type="search" id="mobile-search-input" placeholder="Search products…" aria-label="Search products on mobile" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+  <main id="main-content">
+
+    <!-- ======================= HOME PAGE ======================= -->
+    <section id="home" class="page active">
+
+      <!-- Hero Section -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-bg-shapes">
+          <div class="shape shape-1"></div>
+          <div class="shape shape-2"></div>
+          <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            AI-Powered Shopping Experience
+          </div>
+          <h1 id="hero-heading" class="hero-title">
+            Shop <span class="gradient-text">Smarter.</span><br/>Save <span class="gradient-text">More.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Discover thousands of products with AI-powered recommendations,<br class="hide-mobile"/>
+            unbeatable prices, and lightning-fast delivery.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg" id="start-shopping-btn" aria-label="Start shopping now">
+              Start Shopping
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <button class="btn btn-outline btn-lg" id="hero-deals-btn" aria-label="View today's deals">
+              Today's Deals
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">50K+</span>
+              <span class="stat-label">Products</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-number">2M+</span>
+              <span class="stat-label">Happy Customers</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-number">99%</span>
+              <span class="stat-label">Satisfaction</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card floating">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80" alt="Premium Watch" class="hero-img" />
+            <div class="hero-card-badge">🔥 Hot Deal</div>
+          </div>
+          <div class="floating-chip chip-1">
+            <span>✓</span> Free Delivery
+          </div>
+          <div class="floating-chip chip-2">
+            <span>💰</span> Save ₹2000
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Cards -->
+      <section class="categories-section" id="categories" aria-labelledby="categories-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="categories-heading" class="section-title">Shop by <span class="gradient-text">Category</span></h2>
+            <p class="section-subtitle">Explore our wide range of product categories</p>
+          </div>
+          <div class="categories-grid" id="categories-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Products -->
+      <section class="featured-section" aria-labelledby="featured-heading">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 id="featured-heading" class="section-title">Featured <span class="gradient-text">Products</span></h2>
+              <p class="section-subtitle">Hand-picked top sellers just for you</p>
+            </div>
+            <button class="btn btn-ghost" id="view-all-featured" aria-label="View all products">View All →</button>
+          </div>
+          <div class="products-grid" id="featured-products-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Promo Banner -->
+      <section class="promo-banner" aria-label="Promotional offer">
+        <div class="container">
+          <div class="promo-inner">
+            <div class="promo-text">
+              <span class="promo-label">Limited Time Offer</span>
+              <h2 class="promo-title">Get Up To <span class="promo-highlight">50% OFF</span></h2>
+              <p class="promo-desc">On selected electronics and fashion items. Use code <strong>SAVE10</strong> for extra 10% off!</p>
+              <button class="btn btn-white" id="promo-shop-btn" aria-label="Shop the sale">Shop the Sale</button>
+            </div>
+            <div class="promo-visual">
+              <div class="promo-badge">🎉</div>
+              <div class="promo-bubbles">
+                <span class="bubble">Electronics</span>
+                <span class="bubble">Fashion</span>
+                <span class="bubble">Sports</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trending Deals -->
+      <section class="trending-section" id="deals" aria-labelledby="trending-heading">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 id="trending-heading" class="section-title">Today's <span class="gradient-text">Trending Deals</span></h2>
+              <p class="section-subtitle">Limited-time offers you don't want to miss</p>
+            </div>
+          </div>
+          <div class="products-grid" id="trending-products-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Recently Viewed -->
+      <section class="recently-viewed" id="recently-viewed-section" style="display:none" aria-labelledby="recent-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="recent-heading" class="section-title">Recently <span class="gradient-text">Viewed</span></h2>
+          </div>
+          <div class="products-grid" id="recently-viewed-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Budget Mode Banner -->
+      <section class="budget-section" aria-labelledby="budget-heading">
+        <div class="container">
+          <div class="budget-inner">
+            <div class="budget-icon">💡</div>
+            <div class="budget-text">
+              <h3 id="budget-heading">Budget Shopping Mode</h3>
+              <p>Enter your budget and we'll highlight affordable products for you!</p>
+            </div>
+            <div class="budget-input-group">
+              <span class="budget-rupee">₹</span>
+              <input type="number" id="budget-input" placeholder="Enter budget" min="0" aria-label="Enter your shopping budget in rupees" />
+              <button class="btn btn-primary" id="set-budget-btn" aria-label="Set budget">Set Budget</button>
+              <button class="btn btn-ghost" id="clear-budget-btn" style="display:none" aria-label="Clear budget">Clear</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="newsletter-section" aria-labelledby="newsletter-heading">
+        <div class="container">
+          <div class="newsletter-inner">
+            <div class="newsletter-text">
+              <h2 id="newsletter-heading">Stay in the Loop</h2>
+              <p>Get exclusive deals, new arrivals, and special offers delivered to your inbox.</p>
+            </div>
+            <form class="newsletter-form" id="newsletter-form" aria-label="Newsletter subscription form" novalidate>
+              <input type="email" id="newsletter-email" placeholder="Enter your email address" aria-label="Email address for newsletter" required />
+              <button type="submit" class="btn btn-primary" id="newsletter-submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ======================= PRODUCTS PAGE ======================= -->
+    <section id="products-page" class="page" aria-labelledby="products-page-heading">
+      <div class="container">
+        <div class="products-page-header">
+          <h1 id="products-page-heading" class="page-title">All Products</h1>
+          <p class="page-subtitle" id="products-count-label">Showing all products</p>
+        </div>
+
+        <!-- Filters & Sort Bar -->
+        <div class="filter-bar">
+          <div class="filter-left">
+            <button class="filter-toggle-btn" id="filter-sidebar-toggle" aria-expanded="false" aria-controls="filter-sidebar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="16" y2="12"/><line x1="4" y1="18" x2="12" y2="18"/>
+              </svg>
+              Filters
+            </button>
+
+            <!-- Category Chips -->
+            <div class="category-chips" id="category-chips" role="group" aria-label="Filter by category">
+              <button class="chip active" data-cat="all" aria-pressed="true">All</button>
+              <button class="chip" data-cat="electronics" aria-pressed="false">Electronics</button>
+              <button class="chip" data-cat="fashion" aria-pressed="false">Fashion</button>
+              <button class="chip" data-cat="accessories" aria-pressed="false">Accessories</button>
+              <button class="chip" data-cat="home" aria-pressed="false">Home & Living</button>
+              <button class="chip" data-cat="sports" aria-pressed="false">Sports</button>
+            </div>
+          </div>
+          <div class="filter-right">
+            <label for="price-sort" class="sr-only">Sort products</label>
+            <select id="price-sort" class="sort-select" aria-label="Sort products">
+              <option value="default">Sort by: Default</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="popularity">Most Popular</option>
+              <option value="discount">Highest Discount</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="price-range-bar">
+          <label for="price-range" class="price-range-label">
+            Price Range: <strong id="price-range-display">₹0 – ₹50,000</strong>
+          </label>
+          <input type="range" id="price-range" class="price-slider" min="0" max="50000" value="50000" step="500" aria-label="Maximum price filter" />
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-layout">
+          <!-- Filter Sidebar -->
+          <aside class="filter-sidebar" id="filter-sidebar" aria-label="Product filters">
+            <div class="sidebar-section">
+              <h3 class="sidebar-title">Categories</h3>
+              <div class="sidebar-categories" id="sidebar-categories" role="group" aria-label="Category filters"></div>
+            </div>
+            <div class="sidebar-section">
+              <h3 class="sidebar-title">Price Range</h3>
+              <div class="sidebar-price">
+                <input type="range" id="sidebar-price-range" min="0" max="50000" value="50000" step="500" aria-label="Sidebar maximum price filter" />
+                <div class="sidebar-price-labels">
+                  <span>₹0</span>
+                  <span id="sidebar-price-display">₹50,000</span>
+                </div>
+              </div>
+            </div>
+            <div class="sidebar-section">
+              <h3 class="sidebar-title">Rating</h3>
+              <div class="sidebar-ratings" id="sidebar-ratings" role="group" aria-label="Rating filters">
+                <label class="sidebar-rating-option">
+                  <input type="radio" name="rating" value="0" checked aria-label="All ratings" /> All Ratings
+                </label>
+                <label class="sidebar-rating-option">
+                  <input type="radio" name="rating" value="4" aria-label="4 stars and above" /> 4★ & above
+                </label>
+                <label class="sidebar-rating-option">
+                  <input type="radio" name="rating" value="3" aria-label="3 stars and above" /> 3★ & above
+                </label>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Grid Container -->
+          <div class="products-grid-wrapper">
+            <div class="products-grid" id="all-products-grid">
+              <!-- Populated by JS -->
+            </div>
+            <div class="no-results" id="no-results" style="display:none" aria-live="polite">
+              <div class="no-results-icon">🔍</div>
+              <h3>No Products Found</h3>
+              <p>Try adjusting your search or filter criteria.</p>
+              <button class="btn btn-primary" id="clear-filters-btn">Clear Filters</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CART PAGE ======================= -->
+    <section id="cart-page" class="page" aria-labelledby="cart-page-heading">
+      <div class="container">
+        <h1 id="cart-page-heading" class="page-title">Shopping Cart</h1>
+
+        <!-- Shipping Progress Bar -->
+        <div class="shipping-progress-container" id="shipping-progress-container">
+          <div class="shipping-progress-text" id="shipping-progress-text">Add ₹999 more to get free shipping!</div>
+          <div class="shipping-progress-bar">
+            <div class="shipping-progress-fill" id="shipping-progress-fill" style="width:0%"></div>
+          </div>
+        </div>
+
+        <!-- Cart Layout -->
+        <div class="cart-layout" id="cart-layout">
+          <!-- Cart Items -->
+          <div class="cart-items-section">
+            <div class="cart-header-row">
+              <h2 class="cart-section-title">Your Items <span id="cart-items-count">(0)</span></h2>
+              <button class="btn btn-ghost btn-sm danger" id="clear-cart-btn" aria-label="Clear all cart items">Clear All</button>
+            </div>
+            <div id="cart-items-list" aria-label="Cart items"></div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="order-summary-section">
+            <div class="order-summary-card">
+              <h2 class="summary-title">Order Summary</h2>
+
+              <!-- Coupon -->
+              <div class="coupon-section">
+                <label for="coupon-input" class="coupon-label">Coupon Code</label>
+                <div class="coupon-input-group">
+                  <input type="text" id="coupon-input" placeholder="Enter coupon code" aria-label="Enter coupon code" />
+                  <button class="btn btn-primary btn-sm" id="apply-coupon-btn" aria-label="Apply coupon code">Apply</button>
+                </div>
+                <div class="coupon-message" id="coupon-message" aria-live="polite"></div>
+                <div class="coupon-hints">
+                  <span>Available: </span>
+                  <button class="coupon-hint-btn" data-coupon="SAVE10" aria-label="Apply coupon SAVE10">SAVE10</button>
+                  <button class="coupon-hint-btn" data-coupon="WELCOME5" aria-label="Apply coupon WELCOME5">WELCOME5</button>
+                </div>
+              </div>
+
+              <!-- Price Breakdown -->
+              <div class="price-breakdown" id="price-breakdown">
+                <div class="price-row">
+                  <span>Subtotal</span>
+                  <span id="summary-subtotal">₹0</span>
+                </div>
+                <div class="price-row discount-row" id="order-discount-row" style="display:none">
+                  <span>Order Discount</span>
+                  <span id="summary-order-discount" class="discount-amount">-₹0</span>
+                </div>
+                <div class="price-row discount-row" id="coupon-discount-row" style="display:none">
+                  <span>Coupon Discount (<span id="coupon-code-display"></span>)</span>
+                  <span id="summary-coupon-discount" class="discount-amount">-₹0</span>
+                </div>
+                <div class="price-row">
+                  <span>GST (5%)</span>
+                  <span id="summary-gst">₹0</span>
+                </div>
+                <div class="price-row">
+                  <span>Shipping</span>
+                  <span id="summary-shipping">₹49</span>
+                </div>
+                <div class="price-divider"></div>
+                <div class="price-row total-row">
+                  <span>Total Payable</span>
+                  <span id="summary-total">₹0</span>
+                </div>
+                <div class="savings-badge" id="savings-badge" style="display:none">
+                  🎉 You're saving <strong id="savings-amount">₹0</strong> on this order!
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-full" id="checkout-btn" aria-label="Proceed to checkout">
+                Proceed to Checkout
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+
+              <div class="cart-stats">
+                <div class="stat-item">
+                  <span class="stat-value" id="stat-items">0</span>
+                  <span class="stat-key">Items</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value" id="stat-savings">₹0</span>
+                  <span class="stat-key">Saved</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value" id="stat-total">₹0</span>
+                  <span class="stat-key">Total</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty Cart -->
+        <div class="empty-cart" id="empty-cart" style="display:none" aria-label="Empty cart message">
+          <div class="empty-cart-icon">🛒</div>
+          <h2>Your Cart is Empty</h2>
+          <p>Looks like you haven't added anything to your cart yet.</p>
+          <button class="btn btn-primary" id="empty-cart-shop-btn" aria-label="Start shopping">Start Shopping</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= WISHLIST PAGE ======================= -->
+    <section id="wishlist-page" class="page" aria-labelledby="wishlist-page-heading">
+      <div class="container">
+        <h1 id="wishlist-page-heading" class="page-title">My Wishlist</h1>
+        <div class="products-grid" id="wishlist-grid"></div>
+        <div class="empty-cart" id="empty-wishlist" style="display:none" aria-label="Empty wishlist message">
+          <div class="empty-cart-icon">💝</div>
+          <h2>Your Wishlist is Empty</h2>
+          <p>Save products you love for later!</p>
+          <button class="btn btn-primary" id="empty-wishlist-shop-btn" aria-label="Browse products">Browse Products</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CHECKOUT PAGE ======================= -->
+    <section id="checkout-page" class="page" aria-labelledby="checkout-page-heading">
+      <div class="container">
+        <h1 id="checkout-page-heading" class="page-title">Checkout</h1>
+        <div class="checkout-layout">
+          <!-- Checkout Form -->
+          <div class="checkout-form-section">
+            <form id="checkout-form" novalidate aria-label="Checkout form">
+              <!-- Personal Details -->
+              <div class="form-card">
+                <h2 class="form-card-title">
+                  <span class="form-step">1</span> Personal Details
+                </h2>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="checkout-name">Full Name *</label>
+                    <input type="text" id="checkout-name" placeholder="John Doe" required aria-required="true" />
+                    <span class="field-error" id="name-error" role="alert"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="checkout-email">Email Address *</label>
+                    <input type="email" id="checkout-email" placeholder="john@example.com" required aria-required="true" />
+                    <span class="field-error" id="email-error" role="alert"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="checkout-phone">Mobile Number *</label>
+                    <input type="tel" id="checkout-phone" placeholder="9876543210" required aria-required="true" maxlength="10" />
+                    <span class="field-error" id="phone-error" role="alert"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Delivery Address -->
+              <div class="form-card">
+                <h2 class="form-card-title">
+                  <span class="form-step">2</span> Delivery Address
+                </h2>
+                <div class="form-grid">
+                  <div class="form-group full-width">
+                    <label for="checkout-address">Street Address *</label>
+                    <textarea id="checkout-address" placeholder="House No., Street, Area…" required aria-required="true" rows="2"></textarea>
+                    <span class="field-error" id="address-error" role="alert"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="checkout-city">City *</label>
+                    <input type="text" id="checkout-city" placeholder="Mumbai" required aria-required="true" />
+                    <span class="field-error" id="city-error" role="alert"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="checkout-pincode">PIN Code *</label>
+                    <input type="text" id="checkout-pincode" placeholder="400001" required aria-required="true" maxlength="6" />
+                    <span class="field-error" id="pincode-error" role="alert"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Payment Method -->
+              <div class="form-card">
+                <h2 class="form-card-title">
+                  <span class="form-step">3</span> Payment Method
+                </h2>
+                <p class="payment-note">⚠️ This is a demo. No real payment is processed.</p>
+                <div class="payment-options" id="payment-options" role="radiogroup" aria-label="Payment method selection">
+                  <label class="payment-option" for="pay-cod">
+                    <input type="radio" id="pay-cod" name="payment" value="cod" checked aria-label="Cash on Delivery" />
+                    <div class="payment-option-content">
+                      <span class="payment-icon">💵</span>
+                      <div>
+                        <strong>Cash on Delivery</strong>
+                        <span>Pay when your order arrives</span>
+                      </div>
+                    </div>
+                  </label>
+                  <label class="payment-option" for="pay-upi">
+                    <input type="radio" id="pay-upi" name="payment" value="upi" aria-label="UPI Payment" />
+                    <div class="payment-option-content">
+                      <span class="payment-icon">📱</span>
+                      <div>
+                        <strong>UPI</strong>
+                        <span>Pay via UPI ID or QR code</span>
+                      </div>
+                    </div>
+                  </label>
+                  <label class="payment-option" for="pay-card">
+                    <input type="radio" id="pay-card" name="payment" value="card" aria-label="Credit/Debit Card Payment" />
+                    <div class="payment-option-content">
+                      <span class="payment-icon">💳</span>
+                      <div>
+                        <strong>Credit / Debit Card</strong>
+                        <span>All major cards accepted</span>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full btn-lg" id="place-order-btn" aria-label="Place your order">
+                Place Order
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Checkout Order Summary -->
+          <div class="checkout-summary-section">
+            <div class="checkout-summary-card">
+              <h2 class="summary-title">Order Summary</h2>
+              <div id="checkout-order-items" class="checkout-items-list"></div>
+              <div class="checkout-price-breakdown" id="checkout-price-breakdown">
+                <div class="price-row">
+                  <span>Subtotal</span>
+                  <span id="checkout-subtotal">₹0</span>
+                </div>
+                <div class="price-row discount-row" id="checkout-order-discount-row" style="display:none">
+                  <span>Order Discount</span>
+                  <span id="checkout-order-discount" class="discount-amount">-₹0</span>
+                </div>
+                <div class="price-row discount-row" id="checkout-coupon-row" style="display:none">
+                  <span>Coupon Discount</span>
+                  <span id="checkout-coupon-discount" class="discount-amount">-₹0</span>
+                </div>
+                <div class="price-row">
+                  <span>GST (5%)</span>
+                  <span id="checkout-gst">₹0</span>
+                </div>
+                <div class="price-row">
+                  <span>Shipping</span>
+                  <span id="checkout-shipping">₹49</span>
+                </div>
+                <div class="price-divider"></div>
+                <div class="price-row total-row">
+                  <span>Total Payable</span>
+                  <span id="checkout-total">₹0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= ORDER CONFIRMATION ======================= -->
+    <section id="order-confirmation-page" class="page" aria-labelledby="order-confirm-heading">
+      <div class="container">
+        <div class="order-confirmation">
+          <div class="confirm-animation">
+            <div class="confirm-circle">
+              <svg class="check-icon" width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <circle cx="30" cy="30" r="29" stroke="url(#confirmGrad)" stroke-width="2"/>
+                <polyline class="check-polyline" points="18,30 26,38 42,22" stroke="url(#confirmGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                  <linearGradient id="confirmGrad" x1="0" y1="0" x2="60" y2="60">
+                    <stop offset="0%" stop-color="#7c3aed"/>
+                    <stop offset="100%" stop-color="#4f46e5"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+          <h1 id="order-confirm-heading" class="confirm-title">Order Placed Successfully! 🎉</h1>
+          <p class="confirm-subtitle">Thank you for shopping with ShopSphere AI!</p>
+          <div class="order-number-badge">
+            Order ID: <strong id="order-number-display"></strong>
+          </div>
+
+          <div class="confirm-details-grid">
+            <div class="confirm-detail">
+              <span class="confirm-label">Customer</span>
+              <span id="confirm-customer"></span>
+            </div>
+            <div class="confirm-detail">
+              <span class="confirm-label">Email</span>
+              <span id="confirm-email"></span>
+            </div>
+            <div class="confirm-detail">
+              <span class="confirm-label">Payment</span>
+              <span id="confirm-payment"></span>
+            </div>
+            <div class="confirm-detail">
+              <span class="confirm-label">Estimated Delivery</span>
+              <span id="confirm-delivery"></span>
+            </div>
+          </div>
+
+          <div class="confirm-items" id="confirm-items"></div>
+
+          <div class="confirm-total">
+            Total Paid: <strong id="confirm-total"></strong>
+          </div>
+
+          <button class="btn btn-primary btn-lg" id="continue-shopping-btn" aria-label="Continue shopping">
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       QUICK VIEW MODAL
+  ============================================================ -->
+  <div class="modal-overlay" id="quick-view-modal" role="dialog" aria-modal="true" aria-labelledby="quick-view-title" style="display:none">
+    <div class="modal-container">
+      <button class="modal-close" id="modal-close-btn" aria-label="Close quick view">✕</button>
+      <div class="modal-content" id="modal-content">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BACK TO TOP BUTTON
+  ============================================================ -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon small">
+              <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="14" fill="url(#footerLogoGrad)"/>
+                <path d="M8 10h12M10 14h8M12 18h4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="footerLogoGrad" x1="0" y1="0" x2="28" y2="28">
+                    <stop offset="0%" stop-color="#7c3aed"/>
+                    <stop offset="100%" stop-color="#4f46e5"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="logo-text">ShopSphere <span class="logo-ai">AI</span></span>
+          </div>
+          <p class="footer-desc">Your AI-powered shopping destination for the best deals across all categories.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home" id="footer-home">Home</a></li>
+            <li><a href="#products" id="footer-products">All Products</a></li>
+            <li><a href="#categories" id="footer-categories">Categories</a></li>
+            <li><a href="#deals" id="footer-deals">Today's Deals</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#" id="footer-electronics" data-cat="electronics">Electronics</a></li>
+            <li><a href="#" id="footer-fashion" data-cat="fashion">Fashion</a></li>
+            <li><a href="#" id="footer-accessories" data-cat="accessories">Accessories</a></li>
+            <li><a href="#" id="footer-home-living" data-cat="home">Home & Living</a></li>
+            <li><a href="#" id="footer-sports" data-cat="sports">Sports</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ShopSphere AI. All rights reserved. Built with ❤️ for smarter shopping.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">🔒 Secure</span>
+          <span class="footer-badge">🚀 Fast Delivery</span>
+          <span class="footer-badge">💯 Quality Assured</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
